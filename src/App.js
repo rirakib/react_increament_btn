@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Button from "./button.component";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+
+    state = {
+      boxes : []
+    }
+
+    buttonHandle = () =>{
+        const newState = {boxes : [...this.state.boxes,0]}
+        this.setState(newState)
+    }
+
+  render(){
+   
+    return(
+      <>
+       <button onClick={this.buttonHandle}> Create new</button>
+          {
+
+            this.state.boxes.map((item,index)=>{
+              return(
+                  <Button data={item} ind={index} key={index}/>
+              )
+            })
+          }
+      </>
+    )
+  }
 }
-
 export default App;
